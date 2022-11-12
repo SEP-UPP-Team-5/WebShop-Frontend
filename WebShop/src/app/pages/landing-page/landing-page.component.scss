@@ -1,0 +1,80 @@
+*{
+    color: #796b6d;
+}
+
+h1 {
+    color: rgba(207, 210, 205, 0.75);
+}
+
+span {
+    color: rgba(166, 162, 162, 0.9);
+}
+
+.text {
+    color: rgba(207, 210, 205, 1);
+}
+
+.background-radial-gradient {
+    position: relative; 
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-control:focus {
+    border-color: #796b6d;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(132, 117, 119, 0.75);
+}
+
+.form-check-input:focus {
+    border-color: #796b6d;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(132, 117, 119, 0.75);
+}
+
+.form-check-input {
+    background-color: #796b6d;
+    border: #796b6d;
+}
+
+.btn {
+    font-size: 18px;
+    background-color: #A6A2A2;
+    width: 30%;
+}
+
+.btn:hover {
+    background-color: #796b6d;
+    color: white;
+}
+
+.icon {
+    background: none;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.background-radial-gradient::before {    
+      content: "";
+      background-image: url("/assets/images/wallpaper.jpg");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.8;
+}
+
+.card {
+    position: relative;
+    background-color: rgba(229, 230, 228, 0.9);
+    border: none;
+}
+
+h2,p {
+    color: #796b6d;
+}
+
