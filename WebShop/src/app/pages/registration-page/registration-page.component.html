@@ -16,19 +16,26 @@
                     <h6 class="mb-0 me-4">Registration type: </h6>
   
                     <div class="form-check form-check-inline mb-0 me-4">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="user"
-                        value="option1" />
+                      <input class="form-check-input" 
+                      checked
+                      type="radio"
+                      name="option" 
+                      [(ngModel)]="name_test" 
+                      [value]="true"/>
                       <label class="form-check-label" for="user">User</label>
                     </div>
   
                     <div class="form-check form-check-inline mb-0">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="company"
-                        value="option2" />
+                      <input class="form-check-input"
+                      type="radio" 
+                      name="option" 
+                      [(ngModel)]="name_test" 
+                      [value]="false"/>
                       <label class="form-check-label" for="company">Company</label>
                     </div>
                   </div><hr><br>
 
-                  <h3 class="mb-5 text-uppercase d-md-flex justify-content-center">User registration</h3>
+                  <h3 *ngIf="name_test" class="mb-5 text-uppercase d-md-flex justify-content-center">User registration</h3>
                   
                   <div class="row">
                     <div class="col-md-6 mb-4">
