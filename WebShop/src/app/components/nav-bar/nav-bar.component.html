@@ -1,4 +1,5 @@
 <nav class="navbar navbar-light justify-content-between">
     <a class="navbar-brand">WebShop Name</a>
-    <button class="btn" type="submit">Registration</button>
+    <button class="btn" type="submit" *ngIf="log" (click)="goToRegistration()">Registration</button>
+    <button class="btn" type="submit" *ngIf="reg" (click)="goToLogin()">Login</button>
   </nav>
