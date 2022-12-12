@@ -1,0 +1,51 @@
+.page {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    justify-content: center;
+
+    .card {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-bottom: 8%;
+        margin-top: 8%;
+        border: 1px solid #E5E6E4;
+
+        .card-header {
+            background-color: #A6A2A2;
+            border: none;
+            font-weight: bolder;
+            color: white;
+        }
+
+        .card-body {
+            h5 {
+                color: #847577;
+            }
+
+            p {
+                color: #A6A2A2;
+            }
+        }
+
+        button {
+            margin: 0 auto;
+            width: 30%;
+            border-radius: 10px;
+            border: none;
+            color: #847577;
+            background-color: #CFD2CD;
+            font-size: 18px;
+            padding: 5px;
+            margin-bottom: 2%;
+        }
+
+        button:hover {
+            background-color: #796b6d;
+            color: white;
+        }
+    }
+}

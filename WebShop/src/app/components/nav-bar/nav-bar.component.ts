@@ -8,23 +8,27 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  reg: boolean = false;
-  log: boolean = true;
+  btnProducts: boolean = true;
+  btnHome: boolean = false;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  goToRegistration() {
-    this.reg = true;
-    this.log = false;
-    this.router.navigateByUrl('/registration');
+  logOut() {
+    this.router.navigateByUrl('');
   }
 
-  goToLogin() {
-    this.reg = false;
-    this.log = true;
-    this.router.navigateByUrl('/landing');
+  goToProducts() {
+    this.router.navigateByUrl('/home/products');
+    this.btnProducts = false;
+    this.btnHome = true;
+  }
+
+  goToHome() {
+    this.router.navigateByUrl('/home');
+    this.btnProducts = true;
+    this.btnHome = false;
   }
 }
