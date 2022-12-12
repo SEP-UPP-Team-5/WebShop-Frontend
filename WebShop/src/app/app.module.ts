@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductsComponent } from './components/products/products.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HomepageComponent } from './components/homepage/homepage.component';
     RegistrationPageComponent,
     HomeComponent,
     ProductsComponent,
-    HomepageComponent
+    HomepageComponent,
+    PaymentPageComponent
   ],
   imports: [
     BrowserModule,
