@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginDto } from 'src/model/login-dto';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -8,13 +10,20 @@ import { Router } from '@angular/router';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  loggedUser: LoginDto = new LoginDto();
+
+  constructor(private router: Router,
+              private userSevice: UserService) { }
 
   ngOnInit(): void {
   }
 
-  login() {
-    this.router.navigateByUrl('/home');
+  login(): void {
+    this.userSevice.login(this.loggedUser).subscribe((res: any) => {
+      localStorage.setItem("token", JSON.parse(res.token));
+      this.router.navigateByUrl('/home');
+    })
   }
+
 
 }
