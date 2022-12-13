@@ -19,10 +19,11 @@ export class LandingPageComponent implements OnInit {
   }
 
   login(): void {
-    this.userSevice.login(this.loggedUser).subscribe((res: any) => {
-      localStorage.setItem("token", JSON.parse(res.token));
-      this.router.navigateByUrl('/home');
-    })
+    // this.userSevice.login(this.loggedUser).subscribe((res: any) => {
+    //   localStorage.setItem ('token', res.token);
+    //   this.router.navigateByUrl('/home');
+    // })
+    this.router.navigateByUrl('/home');
   }
 
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProductDto } from 'src/model/product-dto';
+import { ProductService } from 'src/services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -8,13 +10,25 @@ import { Router } from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  products: ProductDto[] = [];
+
+  constructor(private router: Router,
+              private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.getProducts();
   }
 
   goToPayment() {
     this.router.navigateByUrl('home/payment');
   }
 
+  getProducts(): void {
+    this.productService.getProducts().subscribe({
+      next: (products: ProductDto[]) => { 
+        this.products =  products; 
+      },
+      error: (err) => { console.log(err) }
+    })
+  }
 }
