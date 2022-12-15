@@ -22,4 +22,9 @@ export class UserService {
       }))
   }
 
+  getByUsername(username: any) {
+    const apiUrl = AppConstants.API_HOST + AppConstants.USERS.GET_BY_USERNAME;
+    return this.http.get(apiUrl+username);
+  }
+
 }
