@@ -18,6 +18,8 @@ export class NavBarComponent implements OnInit {
 
   logOut() {
     this.router.navigateByUrl('');
+    localStorage.setItem('token', '');
+    localStorage.setItem('username', '');
   }
 
   goToProducts() {
