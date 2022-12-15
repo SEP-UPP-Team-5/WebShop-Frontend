@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UserDto } from 'src/model/user-dto';
 import { UserService } from 'src/services/user.service';
 
@@ -18,7 +18,8 @@ export class HomepageComponent implements OnInit {
 
   getCurrentUser() {
     const username = localStorage.getItem('username') || "";
-    this.userService.getByUsername(username).subscribe(res => {
+    this.userService.getByUsername(username).subscribe((res:any) => {
+      localStorage.setItem('id', res.id);
       this.currentUser = res;
     });
   }

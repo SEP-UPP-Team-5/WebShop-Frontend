@@ -17,6 +17,7 @@ export const AppConstants = {
     },
     PURCHASE : {
         GET_BY_ID: '/purchase/{0}',
-        BUY: '/purchase/addNew'
+        BUY: '/purchase/addNew',
+        LIST: '/purchase/'
     }
 }

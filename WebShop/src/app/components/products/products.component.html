@@ -1,5 +1,9 @@
-<h4>Products</h4>
-<div class="page">
+<div class="heading">
+  <h4 *ngIf="!isMy">Products</h4>
+  <button class="btn" *ngIf="!isMy" (click)="seePurchased()">Purchased</button>
+</div>
+
+<div class="page" *ngIf="!isMy">
     <div class="card mb-3" *ngFor="let product of products">
         <div class="card-header">{{product.price}} &#x20AC;	</div>
         <div class="card-body">
@@ -10,3 +14,20 @@
         <button (click)="goToPayment()">Buy</button>
     </div>
 </div>
+
+
+<div class="heading">
+  <h4 *ngIf="isMy">My products</h4>
+  <button class="btn" *ngIf="isMy" (click)="seeAll()">Products</button>
+</div>
+<div class="page" *ngIf="isMy">
+    <div class="card mb-3" *ngFor="let my of myProducts">
+        <div class="card-header">{{my.price}} &#x20AC;	</div>
+        <div class="card-body">
+          <h5 class="card-title">{{my.name}}</h5>
+          <p class="card-text">{{my.description}}</p>
+        </div>
+    </div>
+</div>
+
+
