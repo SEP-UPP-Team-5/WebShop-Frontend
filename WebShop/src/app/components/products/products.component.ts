@@ -16,6 +16,9 @@ export class ProductsComponent implements OnInit {
   purchases: PurchaseDto[] = [];
   myProducts: any;
   purchasedProduct: PurchaseDto = new PurchaseDto();
+  id :any;
+
+  userId: any;
 
   constructor(private router: Router,
               private productService: ProductService) { }
@@ -51,7 +54,9 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  goToPayment() {
+  goToPayment(id : any, totalAmount : any) {
+    localStorage.setItem("productId", id);
+    localStorage.setItem("amount", totalAmount);
     this.router.navigateByUrl('home/payment');
   }
 

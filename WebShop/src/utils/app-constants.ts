@@ -1,5 +1,5 @@
 export const AppConstants = {
-     API_HOST : "http://localhost:8080",
+     API_HOST : "http://localhost:8081",
 
      USERS : {
         LIST: '/users',
