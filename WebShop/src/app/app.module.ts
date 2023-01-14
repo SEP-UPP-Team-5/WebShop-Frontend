@@ -13,6 +13,10 @@ import { ProductsComponent } from './components/products/products.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
 import { SuccessComponent } from './components/success/success.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CartComponent } from './components/cart/cart.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -25,13 +29,17 @@ import { SuccessComponent } from './components/success/success.component';
     ProductsComponent,
     HomepageComponent,
     PaymentPageComponent,
-    SuccessComponent
+    SuccessComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatCardModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

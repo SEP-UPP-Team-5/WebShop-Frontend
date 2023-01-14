@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ProductDto } from 'src/model/product-dto';
 import { PurchaseDto } from 'src/model/purchase-dto';
 import { ProductService } from 'src/services/product.service';
+import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-products',
@@ -21,6 +23,7 @@ export class ProductsComponent implements OnInit {
   userId: any;
 
   constructor(private router: Router,
+              public dialog: MatDialog,
               private productService: ProductService) { }
 
   ngOnInit(): void {
@@ -35,6 +38,18 @@ export class ProductsComponent implements OnInit {
       },
       error: (err) => { console.log(err) }
     })
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(CartComponent, {
+      width: '500px',
+      autoFocus: false,
+      data: {products: this.products}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   getPurchases(): void {
@@ -62,7 +77,6 @@ export class ProductsComponent implements OnInit {
 
   seePurchased() {
     this.isMy = true;
-    console.log("jwdhuewygdw");
   }
 
   seeAll() {
