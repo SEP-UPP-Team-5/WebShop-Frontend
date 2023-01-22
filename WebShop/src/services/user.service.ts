@@ -17,7 +17,6 @@ export class UserService {
   login(user: LoginDto) {
     const apiUrl = AppConstants.API_HOST + AppConstants.USERS.LOGIN;
     return this.http.post(apiUrl, user).pipe(map((item: any) => {
-      console.log(item, "jahsxhbs");
        return item;
       }))
   }

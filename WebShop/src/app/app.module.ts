@@ -17,6 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CartComponent } from './components/cart/cart.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {MatIconModule} from '@angular/material/icon';
     HttpClientModule,
     MatDialogModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

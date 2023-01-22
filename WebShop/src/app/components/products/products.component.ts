@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { CartDto, CartItem } from 'src/model/cart-dto';
 import { ProductDto } from 'src/model/product-dto';
 import { PurchaseDto } from 'src/model/purchase-dto';
 import { ProductService } from 'src/services/product.service';
@@ -15,20 +17,22 @@ export class ProductsComponent implements OnInit {
 
   isMy: boolean = false;
   products: ProductDto[] = [];
+  cartItem: CartItem = new CartItem()
   purchases: PurchaseDto[] = [];
   myProducts: any;
   purchasedProduct: PurchaseDto = new PurchaseDto();
   id :any;
+  cartItems: any;
 
   userId: any;
 
   constructor(private router: Router,
               public dialog: MatDialog,
-              private productService: ProductService) { }
+              private productService: ProductService,
+              private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getProducts();
-    this.getPurchases();
   }
 
   getProducts(): void {
@@ -44,7 +48,7 @@ export class ProductsComponent implements OnInit {
     const dialogRef = this.dialog.open(CartComponent, {
       width: '500px',
       autoFocus: false,
-      data: {products: this.products}
+      data: {userId: localStorage.getItem('id'), products: this.products}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -52,15 +56,26 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  getPurchases(): void {
+  getCartItems(productId: string) {
     const id = localStorage.getItem('id');
-    this.productService.getMyPurchases(id).subscribe({
-      next: (purchases: PurchaseDto[]) => { 
-        this.purchases =  purchases;
-        this.getMyProducts(); 
-      },
-      error: (err) => { console.log(err) }
-    })
+    this.productService.getCartProducts(id).subscribe((res:any) => {
+      this.cartItems = res.items;
+      const found = this.cartItems.find((element: any) => element.productId == productId);
+      if(found){
+        this.snackbar.open('You already added this item to the cart', 'OK');
+        return
+      } else {
+        const id = localStorage.getItem('id');
+        this.cartItem.productId = productId;
+        this.productService.addProductToCart(this.cartItem, id).subscribe((res) =>
+          this.snackbar.open('Successfully added item to cart', 'OK')
+        )
+      }
+    });
+  }
+
+  addProductToCart(id: any) {
+    this.getCartItems(id);
   }
 
   getMyProducts() {

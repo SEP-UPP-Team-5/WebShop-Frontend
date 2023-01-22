@@ -12,6 +12,10 @@ export class CartDto {
 }
 
 export class CartItem {
+    deserialize(input: any): this {
+      Object.assign(this, input);
+      return this;
+    }
     productId: string;
 
     constructor(obj?:any) {
