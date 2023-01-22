@@ -1,0 +1,23 @@
+.navbar {
+    background-color: #E5E6E4;
+    padding: 10px;
+    .btn {
+        font-size: 16px;
+        background-color: none;
+        color: #796b6d;
+        padding-right: 20px;
+        padding-left: 20px;
+        border: none;
+    }
+    
+    .btn:hover {
+        background-color: none;
+        color: white;
+        border: none;
+    }
+
+    a {
+        color: #796b6d;
+        font-weight: bold;
+    }
+}
