@@ -19,6 +19,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TransactionHistoryComponent } from './pages/transaction-history/transaction-history.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PaymentPageComponent,
     SuccessComponent,
     CartComponent,
+    TransactionHistoryComponent,
   ],
   imports: [
     BrowserModule,

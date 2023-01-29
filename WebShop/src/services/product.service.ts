@@ -70,5 +70,10 @@ export class ProductService {
       return item;
    }));
   }
+  
+  getOrderById(id: any) {
+    const apiUrl = AppConstants.API_HOST + AppConstants.CART.ORDER;
+    return this.http.get(apiUrl+ '/' + id);
+  }
 
 }

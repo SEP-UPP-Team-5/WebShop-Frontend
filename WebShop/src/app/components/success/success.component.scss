@@ -20,6 +20,20 @@
         margin-top: 3%;
         color: #796b6d;
     }
+
+    .btn {
+        font-size: 18px;
+        background-color: #A6A2A2;
+        width: 20%;
+        margin: 0 auto;
+        margin-top: 1%;
+        color: #E5E6E4;
+    }
+    
+    .btn:hover {
+        background-color: #796b6d;
+        color: white;
+    }
 }
 
 .navbar {
