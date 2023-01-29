@@ -1,0 +1,16 @@
+<p><button (click)="closeDialog()" >X</button></p>
+<div class="page">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <mat-dialog-content>
+        <mat-card *ngFor="let item of myProducts">
+            <mat-card-content>
+                <button>X</button>
+                {{item.name}} - {{item.price}}&#x20AC;
+            </mat-card-content>
+        </mat-card>
+        <div class="buttons">
+            <button class="empty" (click)="emptyCart()">Empty cart</button>
+            <button (click)="goToPayment()">Go to Payment</button>
+        </div>
+    </mat-dialog-content>    
+</div>
