@@ -75,8 +75,13 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  addProductToCart(id: any) {
-    this.getCartItems(id);
+  addProductToCart(productId: string) {
+    //this.getCartItems(id);
+    const id = localStorage.getItem('id');
+    this.cartItem.productId = productId;
+    this.productService.addProductToCart(this.cartItem, id).subscribe((res) =>
+     console.log(res)
+    )
   }
 
   getMyProducts() {
