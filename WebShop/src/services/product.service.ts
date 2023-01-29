@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable } from 'rxjs';
 import { CartDto, CartItem } from 'src/model/cart-dto';
 import { OrderDto } from 'src/model/order-dto';
 import { ProductDto } from 'src/model/product-dto';
@@ -12,9 +12,15 @@ import { AppConstants } from 'src/utils/app-constants';
 })
 export class ProductService {
 
-   httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
-  }
+  getAuthoHeader() : any {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin':  '*'
+    }
+    return{
+      headers: headers
+    };
+  } 
 
   constructor(private http: HttpClient) { }
 
@@ -34,26 +40,26 @@ export class ProductService {
 
   buy(product: PurchaseDto) {
     const apiUrl = AppConstants.API_HOST + AppConstants.PURCHASE.BUY;
-    return this.http.post(apiUrl, product).pipe(map((item: any) => {
+    return this.http.post(apiUrl, product, this.getAuthoHeader()).pipe(map((item: any) => {
        return item;
     }))
   }
 
   addProductToCart(cartItem: any, id: any) {
     const apiUrl = AppConstants.API_HOST + AppConstants.CART.ADD;
-    return this.http.post(apiUrl+id, cartItem).pipe(map((item: any) => {
+    return this.http.post(apiUrl+id, cartItem, this.getAuthoHeader()).pipe(map((item: any) => {
       return item;
    }));
   }
 
   emptyCart(id: any, input?: any): Observable<CartDto> {
     const apiUrl = AppConstants.API_HOST + AppConstants.CART.EMPTY;
-    return this.http.put(apiUrl+id, input).pipe(map((item) => new CartDto()))
+    return this.http.put(apiUrl+id, input, this.getAuthoHeader()).pipe(map((item) => new CartDto()))
   }
 
   getCartProducts(id: any): Observable<CartDto> {
     const apiUrl = AppConstants.API_HOST + AppConstants.CART.GET;
-    return this.http.get(apiUrl+id, this.httpOptions).pipe(map((item: any) => {
+    return this.http.get(apiUrl+id, this.getAuthoHeader()).pipe(map((item: any) => {
       return item;
    }))
   }

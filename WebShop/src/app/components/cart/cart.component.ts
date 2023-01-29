@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, Injector } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { CartDto } from 'src/model/cart-dto';
 import { OrderDto } from 'src/model/order-dto';
 import { ProductService } from 'src/services/product.service';
@@ -15,11 +17,13 @@ export class CartComponent {
   myProducts: any[] = [];
   cartItems: any;
   totalPrice: number = 0;
+  route: any;
 
   constructor(
     public injector: Injector,
     public dialogRef: MatDialogRef<CartComponent>,
     private productService: ProductService,
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
@@ -45,9 +49,13 @@ export class CartComponent {
     order.cart = this.cart;
     order.totalPrice = this.totalPrice;
 
-    this.productService.saveOrder(order).subscribe((res) =>
-      this.dialogRef.close()
-    )
+    this.productService.saveOrder(order).subscribe({
+      next: (res: any) => { 
+        console.log(res)
+        window.location.href = res.url + res.transactionId;
+      },
+      error: (err: HttpErrorResponse) => { console.log(err) }
+    })
   }
 
   filterProducts(items: any) {

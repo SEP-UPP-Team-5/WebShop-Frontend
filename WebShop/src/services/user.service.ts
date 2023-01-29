@@ -26,4 +26,11 @@ export class UserService {
     return this.http.get(apiUrl+username);
   }
 
+  register(user: UserDto) {
+    const apiUrl = AppConstants.API_HOST + AppConstants.USERS.ADD;
+    return this.http.post(apiUrl, user).pipe(map((item: any) => {
+       return item;
+      }))
+  }
+
 }
