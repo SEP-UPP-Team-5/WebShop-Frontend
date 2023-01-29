@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserDto } from 'src/model/user-dto';
@@ -16,17 +17,6 @@ export class RegistrationPageComponent implements OnInit {
   constructor(private router: Router,
     private userSevice: UserService) { }
 
-    roles: any =  [
-      {
-        name: 'Admin',
-        value: 'admin'
-      },
-      {
-        name: 'Customer',
-        value: 'customer'
-      }
-    ]
-
   ngOnInit(): void {
   }
 
@@ -35,12 +25,12 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   register(): void {
-    this.user.role = "admin";
-    this.user.gender = "female"
-    this.userSevice.register(this.user).subscribe((res: any) => {
-      console.log(res);
+    this.userSevice.register(this.user).subscribe({next: (res: any) => { 
+      console.log(res)
+      this.router.navigateByUrl('');
+    },
+    error: (err: HttpErrorResponse) => { console.log(err) }
     })
-    this.router.navigateByUrl('');
   }
 
 }
