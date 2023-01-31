@@ -7,8 +7,9 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
+
 import { ProductsComponent } from './components/products/products.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
@@ -49,6 +50,7 @@ import { FailedComponent } from './components/failed/failed.component';
     MatCardModule,
     MatIconModule,
     MatSnackBarModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule
   ],
   providers: [],

@@ -187,6 +187,7 @@
                           type="password" 
                           [(ngModel)]="user.password" 
                           required
+                          pattern='(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'
                           name="password" 
                           #password="ngModel"
                           class="form-control" 
@@ -195,6 +196,10 @@
                         <div style="color: red;" *ngIf="password.errors?.['required'] && password.touched">
                           Password is required.
                        </div>
+                       <div style="color: red;" *ngIf="password.errors?.['pattern'] && password.touched">
+                        
+Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
+                      </div>
                     </div>
                   </div>
                   
