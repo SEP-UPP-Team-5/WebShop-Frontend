@@ -28,7 +28,7 @@ export class UserService {
 
   register(user: UserDto) {
     const apiUrl = AppConstants.API_HOST + AppConstants.USERS.ADD;
-    return this.http.post(apiUrl, user).pipe(map((item: any) => {
+    return this.http.post(apiUrl, user, {responseType: 'text'}).pipe(map((item: any) => {
        return item;
       }))
   }

@@ -7,8 +7,9 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
+import { MatTableModule } from '@angular/material/table'  ;
 import { ProductsComponent } from './components/products/products.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
@@ -20,6 +21,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TransactionHistoryComponent } from './pages/transaction-history/transaction-history.component';
+import { ErrorComponent } from './components/error/error.component';
+import { FailedComponent } from './components/failed/failed.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,8 @@ import { TransactionHistoryComponent } from './pages/transaction-history/transac
     SuccessComponent,
     CartComponent,
     TransactionHistoryComponent,
+    ErrorComponent,
+    FailedComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +47,11 @@ import { TransactionHistoryComponent } from './pages/transaction-history/transac
     FormsModule,
     HttpClientModule,
     MatDialogModule,
+    MatTableModule,
     MatCardModule,
     MatIconModule,
     MatSnackBarModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule
   ],
   providers: [],
