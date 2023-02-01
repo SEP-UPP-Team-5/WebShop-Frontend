@@ -9,7 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
-
+import { MatTableModule } from '@angular/material/table'  ;
 import { ProductsComponent } from './components/products/products.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
@@ -47,6 +47,7 @@ import { FailedComponent } from './components/failed/failed.component';
     FormsModule,
     HttpClientModule,
     MatDialogModule,
+    MatTableModule,
     MatCardModule,
     MatIconModule,
     MatSnackBarModule,
