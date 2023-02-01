@@ -84,4 +84,11 @@ export class ProductService {
     }))
   }
 
+  getMyProducts(id: any): Observable<ProductDto[]> {
+    const apiUrl = AppConstants.API_HOST + AppConstants.PURCHASE.MY;
+    return this.http.get<ProductDto[]>(apiUrl+id).pipe(map((data: ProductDto[]) => {
+      return data && data.map((elem: ProductDto) => new ProductDto(elem)) || [];
+    }))
+  }
+
 }
