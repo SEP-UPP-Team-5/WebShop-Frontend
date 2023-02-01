@@ -14,6 +14,7 @@ export const AppConstants = {
         LIST: '/purchase/products',
         GET_ONE: '/purchase/products/{0}',
         ADD: '/purchase/products/addNew',
+        HISTORY: '/purchase/history/',
     },
     PURCHASE : {
         GET_BY_ID: '/purchase/{0}',

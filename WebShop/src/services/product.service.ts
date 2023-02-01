@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable } from 'rxjs';
 import { CartDto, CartItem } from 'src/model/cart-dto';
+import { HistoryDto } from 'src/model/history-dto';
 import { OrderDto } from 'src/model/order-dto';
 import { ProductDto } from 'src/model/product-dto';
 import { PurchaseDto } from 'src/model/purchase-dto';
@@ -74,6 +75,13 @@ export class ProductService {
   getOrderById(id: any) {
     const apiUrl = AppConstants.API_HOST + AppConstants.CART.ORDER;
     return this.http.get(apiUrl+ '/' + id);
+  }
+
+  getHistoryOrders(id: any):Observable<HistoryDto[]> {
+    const apiUrl = AppConstants.API_HOST + AppConstants.PRODUCTS.HISTORY;
+    return this.http.get<HistoryDto[]>(apiUrl+id).pipe(map((data: HistoryDto[]) => {
+      return data && data.map((elem: HistoryDto) => new HistoryDto(elem)) || [];
+    }))
   }
 
 }
