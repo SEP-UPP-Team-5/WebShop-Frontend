@@ -13,7 +13,7 @@
                   alt="Sample photo" class="img-fluid"
                   style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
               </div>
-              <div class="col-xl-6">
+              <form class="col-xl-6"  #registerForm="ngForm" (ngSubmit)="registerForm.form.valid && register()" novalidate>
                 <div class="card-body p-md-5">
 
                   <h3 *ngIf="name_test" class="mb-5 text-uppercase d-md-flex justify-content-center">User registration</h3>
@@ -21,8 +21,22 @@
                   <div class="row">
                     <div class="col-md-12 mb-4">
                         <label for="name">Name</label>
-                        <input  [(ngModel)]="user.name" type="text" class="form-control" id="name">
+                        <input 
+                          required 
+                          pattern="[a-zA-Z][a-zA-Z ]+" 
+                          name="name" 
+                          #name="ngModel" 
+                          [(ngModel)]="user.name" 
+                          type="text" 
+                          class="form-control" 
+                          id="name">
                         <small id="name" class="form-text text-muted"></small>
+                        <div style="color: red;" *ngIf="name.errors?.['required'] && name.touched">
+                          Name is required.
+                        </div>
+                        <div style="color: red;" *ngIf="name.errors?.['pattern'] && name.touched">
+                          Only letters are allowed.
+                        </div>
                     </div>
                   </div>
   
@@ -30,20 +44,26 @@
                     <h6 class="mb-0 me-4">Gender: </h6>
   
                     <div class="form-check form-check-inline mb-0 me-4">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                        value="option1" />
+                      <input  
+                        [(ngModel)]="user.gender" 
+                        class="form-check-input" 
+                        type="radio" 
+                        #inlineRadioOptions="ngModel"
+                        name="inlineRadioOptions" 
+                        id="femaleGender"
+                        value="female" />
                       <label class="form-check-label" for="femaleGender">Female</label>
                     </div>
   
                     <div class="form-check form-check-inline mb-0 me-4">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                        value="option2" />
+                      <input  #inlineRadioOptions="ngModel" [(ngModel)]="user.gender" class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                        value="male" />
                       <label class="form-check-label" for="maleGender">Male</label>
                     </div>
   
                     <div class="form-check form-check-inline mb-0">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
-                        value="option3" />
+                      <input  #inlineRadioOptions="ngModel"  [(ngModel)]="user.gender" class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
+                        value="other" />
                       <label class="form-check-label" for="otherGender">Other</label>
                     </div>
                   </div>
@@ -51,26 +71,78 @@
                   <div class="row">
                     <div class="col-md-6 mb-4">
                         <label for="birth">Birth date</label>
-                        <input [(ngModel)]="user.dateOfBirth" type="date" class="form-control" id="birth">
+                        <input 
+                          [(ngModel)]="user.dateOfBirth" 
+                          type="date" 
+                          required
+                          name="dateOfBirth" 
+                          #dateOfBirth="ngModel"  
+                          class="form-control" 
+                          id="birth">
                         <small id="birth" class="form-text text-muted"></small>
+                        <div style="color: red;" *ngIf="dateOfBirth.errors?.['required'] && dateOfBirth.touched">
+                          Date of birth is required.
+                        </div>
                     </div>
                     <div class="col-md-6 mb-4">
                         <label for="phone">Phone number</label>
-                        <input type="text" [(ngModel)]="user.telephoneNo" class="form-control" id="phone">
+                        <input 
+                          type="text" 
+                          [(ngModel)]="user.telephoneNo" 
+                          required
+                          pattern="[0-9]*" 
+                          name="telephoneNo" 
+                          #telephoneNo="ngModel" 
+                          class="form-control" 
+                          id="phone">
                         <small id="phone" class="form-text text-muted"></small>
+                        <div style="color: red;" *ngIf="telephoneNo.errors?.['required'] && telephoneNo.touched">
+                           Phone is required.
+                        </div>
+                        <div style="color: red;" *ngIf="telephoneNo.errors?.['pattern'] && telephoneNo.touched">
+                          Only numbers are allowed.
+                        </div>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col-md-6 mb-4">
                         <label for="username">Username</label>
-                        <input type="text" [(ngModel)]="user.username" class="form-control" id="username">
+                        <input 
+                          type="text" 
+                          [(ngModel)]="user.username" 
+                          required
+                          pattern="[0-9a-zA-Z_.]+$" 
+                          name="username" 
+                          #username="ngModel"
+                          class="form-control" 
+                          id="username">
                         <small id="username" class="form-text text-muted"></small>
+                        <div style="color: red;" *ngIf="username.errors?.['required'] && username.touched">
+                          Username is required.
+                       </div>
+                       <div style="color: red;" *ngIf="username.errors?.['pattern'] && username.touched">
+                         Special characters are not allowed.
+                       </div>
                     </div>
                     <div class="col-md-6 mb-4">
                         <label for="email">Email</label>
-                        <input type="text" [(ngModel)]="user.email" class="form-control" id="email">
+                        <input 
+                          type="text" 
+                          [(ngModel)]="user.email" 
+                          required
+                          email
+                          name="email" 
+                          #email="ngModel"
+                          class="form-control" 
+                          id="email">
                         <small id="email" class="form-text text-muted"></small>
+                        <div style="color: red;" *ngIf="email.errors?.['required'] && email.touched">
+                          Email is required.
+                       </div>
+                       <div style="color: red;" *ngIf="email.errors?.['email'] && email.touched">
+                         Enter a valid email address.
+                       </div>
                     </div>
                   </div>
   
@@ -85,12 +157,12 @@
                   <div class="row">
                     <div class="col-md-6 mb-4">
                         <label for="code">Postal code</label>
-                        <input type="text" [(ngModel)]="user.postalCode" class="form-control" id="code">
+                        <input name="code"  #code="ngModel"  type="text" [(ngModel)]="user.postalCode" class="form-control" id="code">
                         <small id="code" class="form-text text-muted"></small>
                     </div>
                     <div class="col-md-6 mb-4">
                         <label for="city">City</label>
-                        <input type="text" [(ngModel)]="user.city" class="form-control" id="city">
+                        <input name="city"  #city="ngModel" type="text" [(ngModel)]="user.city" class="form-control" id="city">
                         <small id="city" class="form-text text-muted"></small>
                     </div>
                   </div>
@@ -98,12 +170,12 @@
                   <div class="row">
                     <div class="col-md-6 mb-4">
                         <label for="street">Street name</label>
-                        <input type="text" [(ngModel)]="user.street" class="form-control" id="street">
+                        <input name="street"  #street="ngModel" type="text" [(ngModel)]="user.street" class="form-control" id="street">
                         <small id="street" class="form-text text-muted"></small>
                     </div>
                     <div class="col-md-6 mb-4">
                         <label for="number">Street number</label>
-                        <input type="text" [(ngModel)]="user.streetNumber" class="form-control" id="number">
+                        <input name="number"  #number="ngModel" type="text" [(ngModel)]="user.streetNumber" class="form-control" id="number">
                         <small id="number" class="form-text text-muted"></small>
                     </div>
                   </div>
@@ -111,27 +183,54 @@
                   <div class="row">
                     <div class="col-md-12 mb-4">
                         <label for="password">Password</label>
-                        <input type="password" [(ngModel)]="user.password" class="form-control" id="password">
+                        <input 
+                          type="password" 
+                          [(ngModel)]="user.password" 
+                          required
+                          pattern='(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'
+                          name="password" 
+                          #password="ngModel"
+                          class="form-control" 
+                          id="password">
                         <small id="password" class="form-text text-muted"></small>
+                        <div style="color: red;" *ngIf="password.errors?.['required'] && password.touched">
+                          Password is required.
+                       </div>
+                       <div style="color: red;" *ngIf="password.errors?.['pattern'] && password.touched">
+                        
+Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
+                      </div>
                     </div>
                   </div>
                   
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-md-12 mb-4">
                         <label for="passwordr">Password repeat</label>
-                        <input type="password" class="form-control" id="passwordr">
+                        <input 
+                          type="password" 
+                          class="form-control" 
+                          id="passwordr">
                         <small id="passwordr" class="form-text text-muted"></small>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="row">
                     <div class="col-md-12 mb-4">
                         <label for="role">Role</label>
-                        <select class="form-control" [(ngModel)]="user.role" id="role">
-                          <option>Admin</option>
-                          <option>Customer</option>
+                        <select 
+                          class="form-control" 
+                          [(ngModel)]="user.role" 
+                          required
+                          name="role" 
+                          #role="ngModel"
+                          id="role">
+                          <option value="admin">Admin</option>
+                          <option value="customer">Customer</option>
                         </select>
                         <small id="role" class="form-text text-muted"></small>
+                        <div style="color: red;" *ngIf="role.errors?.['required'] && role.touched">
+                          Role is required.
+                       </div>
                     </div>
                   </div>
   
@@ -141,7 +240,7 @@
                   </div>
   
                 </div>
-              </div>
+            </form>
             </div>
           </div>
         </div>

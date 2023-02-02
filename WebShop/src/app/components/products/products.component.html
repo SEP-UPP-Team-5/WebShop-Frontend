@@ -5,7 +5,7 @@
 </div>
 
 <div class="page" *ngIf="!isMy">
-    <div class="card mb-3" *ngFor="let product of products">
+    <div class="card mb-3" *ngFor="let product of filteredProducts">
         <div class="card-header">{{product.price}} &#x20AC;	</div>
         <div class="card-body">
           <h5 class="card-title">{{product.name}}</h5>

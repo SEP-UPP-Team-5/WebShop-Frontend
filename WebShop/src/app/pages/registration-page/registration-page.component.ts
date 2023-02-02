@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserDto } from 'src/model/user-dto';
 import { UserService } from 'src/services/user.service';
@@ -14,18 +16,8 @@ export class RegistrationPageComponent implements OnInit {
   user: UserDto = new UserDto();
   
   constructor(private router: Router,
+    private snackbar: MatSnackBar,
     private userSevice: UserService) { }
-
-    roles: any =  [
-      {
-        name: 'Admin',
-        value: 'admin'
-      },
-      {
-        name: 'Customer',
-        value: 'customer'
-      }
-    ]
 
   ngOnInit(): void {
   }
@@ -35,12 +27,14 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   register(): void {
-    this.user.role = "admin";
-    this.user.gender = "female"
-    this.userSevice.register(this.user).subscribe((res: any) => {
-      console.log(res);
+    this.userSevice.register(this.user).subscribe({next: (res: any) => { 
+      console.log(res)
+      this.router.navigateByUrl('');
+    },
+    error: (err: HttpErrorResponse) => { 
+      this.snackbar.open('Please check the fields and try again', 'OK');
+     }
     })
-    this.router.navigateByUrl('');
   }
 
 }

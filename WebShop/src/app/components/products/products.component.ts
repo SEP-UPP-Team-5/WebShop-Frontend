@@ -20,6 +20,7 @@ export class ProductsComponent implements OnInit {
   cartItem: CartItem = new CartItem()
   purchases: PurchaseDto[] = [];
   myProducts: any;
+  filteredProducts: any;
   purchasedProduct: PurchaseDto = new PurchaseDto();
   id :any;
   cartItems: any;
@@ -33,12 +34,24 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
+    this.getMyPurchases();
   }
 
   getProducts(): void {
     this.productService.getProducts().subscribe({
       next: (products: ProductDto[]) => { 
         this.products =  products; 
+      },
+      error: (err) => { console.log(err) }
+    })
+  }
+
+  getMyPurchases(): void {
+    const id = localStorage.getItem('id');
+    this.productService.getMyProducts(id).subscribe({
+      next: (products: ProductDto[]) => { 
+        this.myProducts =  products; 
+        this.getMyProducts();
       },
       error: (err) => { console.log(err) }
     })
@@ -85,8 +98,8 @@ export class ProductsComponent implements OnInit {
   }
 
   getMyProducts() {
-    for(let purchase of this.purchases){
-      this.myProducts = this.products.filter(a => a.id == purchase.productId);
+    for(let product of this.myProducts){
+      this.filteredProducts = this.products.filter(a => a.id != product.id);
     }
   }
 
